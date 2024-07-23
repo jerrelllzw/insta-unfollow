@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, Heading, Input, Flex } from '@chakra-ui/react';
 
 function App() {
 	const [fileData, setFileData] = useState(null);
@@ -19,37 +19,21 @@ function App() {
 	};
 
 	const processFileData = (data) => {
-		// Assuming the file is a CSV and parsing it accordingly
-		const rows = data.split('\n').map((row) => row.split(','));
-		setFileData(rows);
+		console.log(data);
 	};
 
 	return (
 		<ChakraProvider>
-			<header>
-				<p>Hello World!</p>
-				<input type='file' onChange={handleFileUpload} />
-				{fileData && (
-					<table>
-						<thead>
-							<tr>
-								{fileData[0].map((header, index) => (
-									<th key={index}>{header}</th>
-								))}
-							</tr>
-						</thead>
-						<tbody>
-							{fileData.slice(1).map((row, rowIndex) => (
-								<tr key={rowIndex}>
-									{row.map((cell, cellIndex) => (
-										<td key={cellIndex}>{cell}</td>
-									))}
-								</tr>
-							))}
-						</tbody>
-					</table>
-				)}
-			</header>
+			<Flex
+				flexDirection='column'
+				justifyContent='center'
+				alignItems='center'
+				height='100vh'
+				bg='gray.100'
+			>
+				<Heading mb={6}>InstaUnfollow</Heading>
+				<Input type='file' onChange={handleFileUpload} width='auto' />
+			</Flex>
 		</ChakraProvider>
 	);
 }

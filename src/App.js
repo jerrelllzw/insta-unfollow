@@ -1,25 +1,17 @@
 import React, { useState } from 'react';
-import { ChakraProvider, Heading, Input, Flex } from '@chakra-ui/react';
+import { ChakraProvider, Heading, Flex, Button } from '@chakra-ui/react';
+import { Dropzone, FileMosaic } from '@files-ui/react';
 
 function App() {
-	const [fileData, setFileData] = useState(null);
-
-	const handleFileUpload = (event) => {
-		const file = event.target.files[0];
-		const reader = new FileReader();
-
-		reader.onload = (e) => {
-			const text = e.target.result;
-			processFileData(text);
-		};
-
-		if (file) {
-			reader.readAsText(file);
-		}
+	const [files, setFiles] = useState([]);
+	const updateFiles = (incomingFiles) => {
+		//do something with the files
+		console.log('incoming files', incomingFiles);
+		setFiles(incomingFiles);
+		//even your own upload implementation
 	};
-
-	const processFileData = (data) => {
-		console.log(data);
+	const removeFile = (id) => {
+		setFiles(files.filter((x) => x.id !== id));
 	};
 
 	return (
@@ -32,7 +24,19 @@ function App() {
 				bg='gray.100'
 			>
 				<Heading mb={6}>InstaUnfollow</Heading>
-				<Input type='file' onChange={handleFileUpload} width='auto' />
+				<Flex flexDirection='row' justifyContent='center' alignItems='center'>
+					<Dropzone onChange={updateFiles} value={files}>
+						{files.map((file) => (
+							<FileMosaic key={file.id} {...file} onDelete={removeFile} info />
+						))}
+					</Dropzone>
+					<Dropzone onChange={updateFiles} value={files}>
+						{files.map((file) => (
+							<FileMosaic key={file.id} {...file} onDelete={removeFile} info />
+						))}
+					</Dropzone>
+				</Flex>
+				<Button colorScheme='blue'>Button</Button>
 			</Flex>
 		</ChakraProvider>
 	);

@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@chakra-ui/react';
 
 const SubmitButton = (props) => {
-	const { files } = props;
+	const { files, setResults, setShowResults } = props;
 
 	const validateFiles = () => {
 		if (files.length < 2) {
@@ -36,7 +36,16 @@ const SubmitButton = (props) => {
 			});
 
 			Promise.all(readers).then((contents) => {
-				console.log(contents);
+				let followers_1 = contents[0];
+				let following = contents[1];
+				let results = followers_1.map((follower) => {
+					return follower.string_list_data[0].href;
+				});
+				let results2 = following.relationships_following.map((rs) => {
+					return rs.string_list_data[0].href;
+				});
+				setResults(results2.filter((x) => !results.includes(x)));
+                setShowResults(true);
 			});
 		}
 	};

@@ -3,9 +3,13 @@ import { ChakraProvider, Flex } from '@chakra-ui/react';
 import Title from './components/Title';
 import FileInput from './components/FileInput';
 import SubmitButton from './components/SubmitButton';
+import BackButton from './components/BackButton';
+import ResultsTable from './components/ResultsTable';
 
 const App = () => {
 	const [files, setFiles] = useState([]);
+	const [results, setResults] = useState([]);
+	const [showResults, setShowResults] = useState(false);
 
 	return (
 		<ChakraProvider>
@@ -17,8 +21,18 @@ const App = () => {
 				bg='gray.100'
 			>
 				<Title />
-				<FileInput files={files} setFiles={setFiles} />
-				<SubmitButton files={files} />
+				{!showResults && <FileInput files={files} setFiles={setFiles} />}
+				{!showResults && (
+					<SubmitButton
+						files={files}
+						setResults={setResults}
+						setShowResults={setShowResults}
+					/>
+				)}
+				{showResults && <ResultsTable results={results} />}
+				{showResults && (
+					<BackButton setFiles={setFiles} setShowResults={setShowResults} />
+				)}
 			</Flex>
 		</ChakraProvider>
 	);

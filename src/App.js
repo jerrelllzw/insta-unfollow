@@ -8,6 +8,7 @@ import ResultsTable from './components/ResultsTable';
 
 const App = () => {
 	const [files, setFiles] = useState([]);
+	const [files2, setFiles2] = useState([]);
 	const [results, setResults] = useState([]);
 	const [results2, setResults2] = useState([]);
 	const [showResults, setShowResults] = useState(false);
@@ -19,14 +20,26 @@ const App = () => {
 				flexDirection='column'
 				justifyContent='center'
 				alignItems='center'
-				height='100vh'
 				bg='gray.100'
+				height='100vh'
 			>
 				{!showResults && (
 					<>
-						<FileInput files={files} setFiles={setFiles} />
+						<Flex width={'50vw'} gap={5}>
+							<FileInput
+								files={files}
+								setFiles={setFiles}
+								label={'Drop your followers_1.json file here'}
+							/>
+							<FileInput
+								files={files2}
+								setFiles={setFiles2}
+								label={'Drop your following.json file here'}
+							/>
+						</Flex>
 						<SubmitButton
 							files={files}
+							files2={files2}
 							setResults={setResults}
 							setResults2={setResults2}
 							setShowResults={setShowResults}
@@ -45,7 +58,11 @@ const App = () => {
 								<ResultsTable results={results2} />
 							</Flex>
 						</Flex>
-						<BackButton setFiles={setFiles} setShowResults={setShowResults} />
+						<BackButton
+							setFiles={setFiles}
+							setFiles2={setFiles2}
+							setShowResults={setShowResults}
+						/>
 					</>
 				)}
 			</Flex>

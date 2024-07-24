@@ -2,7 +2,7 @@ import React from 'react';
 import { Dropzone, FileMosaic } from '@files-ui/react';
 
 const FileInput = (props) => {
-	const { files, setFiles } = props;
+	const { files, setFiles, label } = props;
 
 	const updateFiles = (incomingFiles) => {
 		setFiles(incomingFiles);
@@ -17,9 +17,9 @@ const FileInput = (props) => {
 			onChange={updateFiles}
 			value={files}
 			accept='.json'
-			maxFiles={2}
+			maxFiles={1}
 			style={{ width: '50vw' }}
-			label={'Drop your followers_1.json and following.json files here'}
+			label={label}
 			color='#6200EE'
 			background='radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%)'
 		>

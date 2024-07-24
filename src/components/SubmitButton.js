@@ -48,7 +48,9 @@ const SubmitButton = (props) => {
 				setResults(results2.filter((x) => !results.includes(x)));
 				setResults2(results2.filter((x) => results.includes(x)));
 				setShowResults(true);
-			});
+			}).catch((error) => {
+				console.error('Error reading files:', error);
+			});;
 		}
 	};
 

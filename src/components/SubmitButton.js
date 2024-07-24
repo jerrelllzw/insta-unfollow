@@ -21,36 +21,49 @@ const SubmitButton = (props) => {
 			const reader1 = new Promise((resolve, reject) => {
 				const reader = new FileReader();
 				reader.onload = (event) => {
-					resolve(JSON.parse(event.target.result));
+					try {
+						const result = JSON.parse(event.target.result);
+						resolve(result);
+					} catch (error) {
+						reject(new Error('Invalid JSON in followers_1.json'));
+					}
 				};
 				reader.onerror = (error) => reject(error);
 				reader.readAsText(files[0].file);
 			});
+
 			const reader2 = new Promise((resolve, reject) => {
 				const reader = new FileReader();
 				reader.onload = (event) => {
-					resolve(JSON.parse(event.target.result));
+					try {
+						const result = JSON.parse(event.target.result);
+						resolve(result);
+					} catch (error) {
+						reject(new Error('Invalid JSON in following.json'));
+					}
 				};
 				reader.onerror = (error) => reject(error);
 				reader.readAsText(files2[0].file);
 			});
 
-			Promise.all([reader1, reader2]).then((contents) => {
-				console.log(contents);
-				let followers_1 = contents[0];
-				let following = contents[1];
-				let results = followers_1.map((follower) => {
-					return follower.string_list_data[0].value;
+			Promise.all([reader1, reader2])
+				.then((contents) => {
+					console.log(contents);
+					let followers_1 = contents[0];
+					let following = contents[1];
+					let results = followers_1.map((follower) => {
+						return follower.string_list_data[0].value;
+					});
+					let results2 = following.relationships_following.map((rs) => {
+						return rs.string_list_data[0].value;
+					});
+					setResults(results2.filter((x) => !results.includes(x)));
+					setResults2(results2.filter((x) => results.includes(x)));
+					setShowResults(true);
+				})
+				.catch((error) => {
+					alert(error.message);
 				});
-				let results2 = following.relationships_following.map((rs) => {
-					return rs.string_list_data[0].value;
-				});
-				setResults(results2.filter((x) => !results.includes(x)));
-				setResults2(results2.filter((x) => results.includes(x)));
-				setShowResults(true);
-			}).catch((error) => {
-				console.error('Error reading files:', error);
-			});;
 		}
 	};
 

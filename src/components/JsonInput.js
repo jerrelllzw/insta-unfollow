@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dropzone, FileMosaic } from '@files-ui/react';
 
-const FileInput = (props) => {
+const JsonInput = (props) => {
 	const { files, setFiles, label } = props;
 
 	const updateFiles = (incomingFiles) => {
@@ -30,4 +30,4 @@ const FileInput = (props) => {
 	);
 };
 
-export default FileInput;
+export default JsonInput;

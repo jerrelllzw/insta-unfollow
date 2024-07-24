@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
 import { ChakraProvider, Flex, Text } from '@chakra-ui/react';
-import Title from './components/Title';
-import FileInput from './components/FileInput';
+import Header from './components/Header';
+import JsonInput from './components/JsonInput';
 import SubmitButton from './components/SubmitButton';
 import BackButton from './components/BackButton';
 import ResultsTable from './components/ResultsTable';
 import Help from './components/Help';
+import {
+	FOLLOWERS_FILE_UPLOAD_LABEL,
+	FOLLOWINGS_FILE__UPLOAD_LABEL,
+} from './resources/Constants';
 
 const App = () => {
-	const [files, setFiles] = useState([]);
-	const [files2, setFiles2] = useState([]);
-	const [results, setResults] = useState([]);
-	const [results2, setResults2] = useState([]);
+	const [followersFile, setFollowersFile] = useState([]);
+	const [followingsFile, setFollowingsFile] = useState([]);
+	const [happyResults, setHappyResults] = useState([]);
+	const [sadResults, setSadResults] = useState([]);
 	const [showResults, setShowResults] = useState(false);
 
 	return (
 		<ChakraProvider>
-			<Title />
+			<Header />
 			<Flex
 				flexDirection='column'
 				justifyContent='center'
@@ -27,22 +31,22 @@ const App = () => {
 				{!showResults && (
 					<>
 						<Flex width={'50vw'} gap={5}>
-							<FileInput
-								files={files}
-								setFiles={setFiles}
-								label={'Drop your followers_1.json file here'}
+							<JsonInput
+								files={followersFile}
+								setFiles={setFollowersFile}
+								label={FOLLOWERS_FILE_UPLOAD_LABEL}
 							/>
-							<FileInput
-								files={files2}
-								setFiles={setFiles2}
-								label={'Drop your following.json file here'}
+							<JsonInput
+								files={followingsFile}
+								setFiles={setFollowingsFile}
+								label={FOLLOWINGS_FILE__UPLOAD_LABEL}
 							/>
 						</Flex>
 						<SubmitButton
-							files={files}
-							files2={files2}
-							setResults={setResults}
-							setResults2={setResults2}
+							followersFile={followersFile ? followersFile[0] : null}
+							followingsFile={followingsFile ? followingsFile[0] : null}
+							setHappyResults={setHappyResults}
+							setSadResults={setSadResults}
 							setShowResults={setShowResults}
 						/>
 					</>
@@ -51,17 +55,17 @@ const App = () => {
 					<>
 						<Flex justifyContent='center' alignItems='center'>
 							<Flex flexDirection='column' alignItems='center' padding={5}>
-								<Text>:(</Text>
-								<ResultsTable results={results} />
+								<Text>:)</Text>
+								<ResultsTable results={happyResults} />
 							</Flex>
 							<Flex flexDirection='column' alignItems='center' padding={5}>
-								<Text>:)</Text>
-								<ResultsTable results={results2} />
+								<Text>:(</Text>
+								<ResultsTable results={sadResults} />
 							</Flex>
 						</Flex>
 						<BackButton
-							setFiles={setFiles}
-							setFiles2={setFiles2}
+							setFollowersFile={setFollowersFile}
+							setFollowingsFile={setFollowingsFile}
 							setShowResults={setShowResults}
 						/>
 					</>

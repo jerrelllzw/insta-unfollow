@@ -1,69 +1,63 @@
 import React from 'react';
 import { Button } from '@chakra-ui/react';
+import { readJson } from '../utils/FileUtils';
+import {
+	FOLLOWERS_FILENAME,
+	FOLLOWINGS_FILENAME,
+	INVALID_FOLLOWERS_FILE_MESSAGE,
+	INVALID_FOLLOWINGS_FILE_MESSAGE,
+	INVALID_JSON_FILE_MESSAGE,
+} from '../resources/Constants';
 
 const SubmitButton = (props) => {
-	const { files, files2, setResults, setResults2, setShowResults } = props;
+	const {
+		followersFile,
+		followingsFile,
+		setHappyResults,
+		setSadResults,
+		setShowResults,
+	} = props;
 
 	const validateFiles = () => {
-		if (files.length !== 1 || files[0].name !== 'followers_1.json') {
-			alert('Please upload followers_1.json');
+		if (!followersFile || followersFile.name !== FOLLOWERS_FILENAME) {
+			alert(INVALID_FOLLOWERS_FILE_MESSAGE);
 			return false;
 		}
-		if (files2.length !== 1 || files2[0].name !== 'following.json') {
-			alert('Please upload following.json');
+		if (!followingsFile || followingsFile.name !== FOLLOWINGS_FILENAME) {
+			alert(INVALID_FOLLOWINGS_FILE_MESSAGE);
 			return false;
 		}
 		return true;
 	};
 
-	const handleOnClick = () => {
+	const handleOnClick = async () => {
 		if (validateFiles()) {
-			const reader1 = new Promise((resolve, reject) => {
-				const reader = new FileReader();
-				reader.onload = (event) => {
-					try {
-						const result = JSON.parse(event.target.result);
-						resolve(result);
-					} catch (error) {
-						reject(new Error('Invalid JSON in followers_1.json'));
-					}
-				};
-				reader.onerror = (error) => reject(error);
-				reader.readAsText(files[0].file);
-			});
+			try {
+				const [followersData, followingData] = await Promise.all([
+					readJson(followersFile.file),
+					readJson(followingsFile.file),
+				]);
 
-			const reader2 = new Promise((resolve, reject) => {
-				const reader = new FileReader();
-				reader.onload = (event) => {
-					try {
-						const result = JSON.parse(event.target.result);
-						resolve(result);
-					} catch (error) {
-						reject(new Error('Invalid JSON in following.json'));
-					}
-				};
-				reader.onerror = (error) => reject(error);
-				reader.readAsText(files2[0].file);
-			});
+				const followers = followersData.map(
+					(follower) => follower.string_list_data[0].value
+				);
+				const following = followingData.relationships_following.map(
+					(following) => following.string_list_data[0].value
+				);
 
-			Promise.all([reader1, reader2])
-				.then((contents) => {
-					console.log(contents);
-					let followers_1 = contents[0];
-					let following = contents[1];
-					let results = followers_1.map((follower) => {
-						return follower.string_list_data[0].value;
-					});
-					let results2 = following.relationships_following.map((rs) => {
-						return rs.string_list_data[0].value;
-					});
-					setResults(results2.filter((x) => !results.includes(x)));
-					setResults2(results2.filter((x) => results.includes(x)));
-					setShowResults(true);
-				})
-				.catch((error) => {
-					alert(error.message);
-				});
+				const mutualFollowing = following.filter((user) =>
+					followers.includes(user)
+				);
+				const notFollowingBack = following.filter(
+					(user) => !followers.includes(user)
+				);
+
+				setHappyResults(mutualFollowing);
+				setSadResults(notFollowingBack);
+				setShowResults(true);
+			} catch (error) {
+				alert(INVALID_JSON_FILE_MESSAGE);
+			}
 		}
 	};
 

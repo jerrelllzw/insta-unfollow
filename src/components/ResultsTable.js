@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table, Tbody, Tr, Td, TableContainer, Link } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { INSTAGRAM_LINK } from '../resources/Constants';
 
 const ResultsTable = (props) => {
 	const { results } = props;
@@ -12,7 +13,7 @@ const ResultsTable = (props) => {
 					{results.map((result) => (
 						<Tr key={result}>
 							<Td>
-								<Link href={'https://www.instagram.com/' + result} isExternal>
+								<Link href={INSTAGRAM_LINK + result} isExternal>
 									<ExternalLinkIcon mx='2px' />
 									{result}
 								</Link>

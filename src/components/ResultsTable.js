@@ -1,5 +1,6 @@
 import React from 'react';
-import { Table, Tbody, Tr, Td, TableContainer } from '@chakra-ui/react';
+import { Table, Tbody, Tr, Td, TableContainer, Link } from '@chakra-ui/react';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 const ResultsTable = (props) => {
 	const { results } = props;
@@ -10,7 +11,12 @@ const ResultsTable = (props) => {
 				<Tbody>
 					{results.map((result) => (
 						<Tr key={result}>
-							<Td>{result}</Td>
+							<Td>
+								<Link href={'https://www.instagram.com/' + result} isExternal>
+									<ExternalLinkIcon mx='2px' />
+									{result}
+								</Link>
+							</Td>
 						</Tr>
 					))}
 				</Tbody>

@@ -5,6 +5,7 @@ import FileInput from './components/FileInput';
 import SubmitButton from './components/SubmitButton';
 import BackButton from './components/BackButton';
 import ResultsTable from './components/ResultsTable';
+import Help from './components/Help';
 
 const App = () => {
 	const [files, setFiles] = useState([]);
@@ -66,6 +67,7 @@ const App = () => {
 					</>
 				)}
 			</Flex>
+			<Help />
 		</ChakraProvider>
 	);
 };

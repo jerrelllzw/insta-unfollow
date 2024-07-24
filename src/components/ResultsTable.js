@@ -1,27 +1,12 @@
 import React from 'react';
-import {
-	Table,
-	Thead,
-	Tbody,
-	Tr,
-	Th,
-	Td,
-	TableCaption,
-	TableContainer,
-} from '@chakra-ui/react';
+import { Table, Tbody, Tr, Td, TableContainer } from '@chakra-ui/react';
 
 const ResultsTable = (props) => {
 	const { results } = props;
 
 	return (
-		<TableContainer>
+		<TableContainer overflowY='auto' maxHeight={'30vh'}>
 			<Table variant='striped' colorScheme='teal'>
-				<TableCaption>:)</TableCaption>
-				<Thead>
-					<Tr>
-						<Th>Accounts</Th>
-					</Tr>
-				</Thead>
 				<Tbody>
 					{results.map((result) => (
 						<Tr key={result}>

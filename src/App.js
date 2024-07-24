@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChakraProvider, Flex } from '@chakra-ui/react';
+import { ChakraProvider, Flex, Text } from '@chakra-ui/react';
 import Title from './components/Title';
 import FileInput from './components/FileInput';
 import SubmitButton from './components/SubmitButton';
@@ -9,6 +9,7 @@ import ResultsTable from './components/ResultsTable';
 const App = () => {
 	const [files, setFiles] = useState([]);
 	const [results, setResults] = useState([]);
+	const [results2, setResults2] = useState([]);
 	const [showResults, setShowResults] = useState(false);
 
 	return (
@@ -21,17 +22,31 @@ const App = () => {
 				bg='gray.100'
 			>
 				<Title />
-				{!showResults && <FileInput files={files} setFiles={setFiles} />}
 				{!showResults && (
-					<SubmitButton
-						files={files}
-						setResults={setResults}
-						setShowResults={setShowResults}
-					/>
+					<>
+						<FileInput files={files} setFiles={setFiles} />
+						<SubmitButton
+							files={files}
+							setResults={setResults}
+							setResults2={setResults2}
+							setShowResults={setShowResults}
+						/>
+					</>
 				)}
-				{showResults && <ResultsTable results={results} />}
 				{showResults && (
-					<BackButton setFiles={setFiles} setShowResults={setShowResults} />
+					<>
+						<Flex justifyContent='center' alignItems='center'>
+							<Flex flexDirection='column' alignItems='center' padding={5}>
+								<Text>:(</Text>
+								<ResultsTable results={results} />
+							</Flex>
+							<Flex flexDirection='column' alignItems='center' padding={5}>
+								<Text>:)</Text>
+								<ResultsTable results={results2} />
+							</Flex>
+						</Flex>
+						<BackButton setFiles={setFiles} setShowResults={setShowResults} />
+					</>
 				)}
 			</Flex>
 		</ChakraProvider>

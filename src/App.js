@@ -14,6 +14,7 @@ const App = () => {
 
 	return (
 		<ChakraProvider>
+			<Title />
 			<Flex
 				flexDirection='column'
 				justifyContent='center'
@@ -21,7 +22,6 @@ const App = () => {
 				height='100vh'
 				bg='gray.100'
 			>
-				<Title />
 				{!showResults && (
 					<>
 						<FileInput files={files} setFiles={setFiles} />

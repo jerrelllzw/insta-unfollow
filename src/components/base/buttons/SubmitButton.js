@@ -7,6 +7,7 @@ import {
 	INVALID_FOLLOWERS_FILE_MESSAGE,
 	INVALID_FOLLOWINGS_FILE_MESSAGE,
 	INVALID_JSON_FILE_MESSAGE,
+	SUCCESS_MESSAGE,
 } from '../../../common/Constants';
 import { useToastUtils } from '../../../common/ToastUtils';
 
@@ -58,6 +59,7 @@ const SubmitButton = (props) => {
 				setHappyResults(mutualFollowing);
 				setSadResults(notFollowingBack);
 				setShowResults(true);
+				toast(SUCCESS_MESSAGE, 'success');
 			} catch (error) {
 				toast(INVALID_JSON_FILE_MESSAGE, 'error');
 			}

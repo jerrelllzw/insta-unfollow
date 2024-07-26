@@ -5,8 +5,8 @@ const HelpButton = (props) => {
 	const { onOpen } = props;
 
 	return (
-		<Button onClick={onOpen} variant='outline' color='#EEEEEE'>
-			Help
+		<Button onClick={onOpen} colorScheme='whiteAlpha'>
+			Need Help?
 		</Button>
 	);
 };

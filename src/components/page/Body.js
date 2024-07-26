@@ -26,7 +26,7 @@ const Body = (props) => {
 				flexDirection='column'
 				justifyContent='center'
 				alignItems='center'
-				height='90%'
+				height='100%'
 				gap={10}
 			>
 				{!showResults && (

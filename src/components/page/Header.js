@@ -6,7 +6,7 @@ const Header = (props) => {
 	const { onOpen } = props;
 
 	return (
-		<Flex alignItems='center' padding='5' height='10%'>
+		<Flex alignItems='center' padding='5'>
 			<Heading  color='#EEEEEE' style={{marginRight: 'auto'}}>
 				InstaUnfollow
 			</Heading>

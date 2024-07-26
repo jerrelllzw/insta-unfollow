@@ -60,24 +60,14 @@ const Body = (props) => {
 						<Heading size='4xl' color='#EEEEEE'>
 							Results
 						</Heading>
-						<Flex justifyContent='center' alignItems='center'>
-							<Flex
-								flexDirection='column'
-								alignItems='center'
-								padding={5}
-								gap={5}
-							>
+						<Flex justifyContent='center' gap={10}>
+							<Flex flexDirection='column' alignItems='center' gap={5}>
 								<Heading color='#EEEEEE' size='md'>
 									Mutually Following 🙂
 								</Heading>
 								<ResultsTable results={happyResults} />
 							</Flex>
-							<Flex
-								flexDirection='column'
-								alignItems='center'
-								padding={5}
-								gap={5}
-							>
+							<Flex flexDirection='column' alignItems='center' gap={5}>
 								<Heading color='#EEEEEE' size='md'>
 									Not following back ☹️
 								</Heading>

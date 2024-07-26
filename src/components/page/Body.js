@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Flex, Text, Heading } from '@chakra-ui/react';
+import { Flex, Heading } from '@chakra-ui/react';
 import JsonInput from '../base/JsonInput';
 import SubmitButton from '../base/buttons/SubmitButton';
 import BackButton from '../base/buttons/BackButton';
@@ -26,8 +26,7 @@ const Body = (props) => {
 				flexDirection='column'
 				justifyContent='center'
 				alignItems='center'
-				bg='#393E46'
-				height='100vh'
+				height='90%'
 				gap={10}
 			>
 				{!showResults && (
@@ -35,12 +34,7 @@ const Body = (props) => {
 						<Heading size='4xl' color='#EEEEEE'>
 							Upload Here
 						</Heading>
-						<Flex
-							width={'50vw'}
-							gap={5}
-							justifyContent='center'
-							alignItems='center'
-						>
+						<Flex gap={5} justifyContent='center' alignItems='center'>
 							<JsonInput
 								files={followersFile}
 								setFiles={setFollowersFile}
@@ -64,12 +58,16 @@ const Body = (props) => {
 				{showResults && (
 					<>
 						<Flex justifyContent='center' alignItems='center'>
-							<Flex flexDirection='column' alignItems='center' padding={5}>
-								<Text>:)</Text>
+							<Flex flexDirection='column' alignItems='center' padding={5} gap={5}>
+								<Heading color='#EEEEEE' size='md'>
+									Mutually Following 🙂
+								</Heading>
 								<ResultsTable results={happyResults} />
 							</Flex>
-							<Flex flexDirection='column' alignItems='center' padding={5}>
-								<Text>:(</Text>
+							<Flex flexDirection='column' alignItems='center' padding={5} gap={5}>
+								<Heading color='#EEEEEE' size='md'>
+									Not following back ☹️
+								</Heading>
 								<ResultsTable results={sadResults} />
 							</Flex>
 						</Flex>

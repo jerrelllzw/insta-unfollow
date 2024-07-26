@@ -7,11 +7,11 @@ const ResultsTable = (props) => {
 
 	return (
 		<TableContainer overflowY='auto' maxHeight={'30vh'}>
-			<Table variant='striped' colorScheme='teal'>
+			<Table variant='simple'>
 				<Tbody>
 					{results.map((result) => (
 						<Tr key={result}>
-							<Td>
+							<Td color='#EEEEEE'>
 								<Link href={'https://www.instagram.com/' + result} isExternal>
 									<ExternalLinkIcon mx='2px' />
 									{result}

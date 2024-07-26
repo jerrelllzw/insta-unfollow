@@ -21,7 +21,7 @@ const JsonInput = (props) => {
 			style={{ width: '20vw' }}
 			label={label}
 			color='#EEEEEE'
-			background='#222831'
+			background='#393E46'
 		>
 			{files.map((file) => (
 				<FileMosaic key={file.id} {...file} onDelete={removeFile} />

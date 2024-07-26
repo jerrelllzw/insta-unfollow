@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChakraProvider, useDisclosure } from '@chakra-ui/react';
+import { ChakraProvider, useDisclosure, Flex } from '@chakra-ui/react';
 import Header from './components/page/Header';
 import Body from './components/page/Body';
 
@@ -8,8 +8,10 @@ const App = () => {
 
 	return (
 		<ChakraProvider>
-			<Header onOpen={onOpen} />
-			<Body isOpen={isOpen} onClose={onClose} />
+			<Flex flexDirection='column' bg='#222831' height='100vh'>
+				<Header onOpen={onOpen} />
+				<Body isOpen={isOpen} onClose={onClose} />
+			</Flex>
 		</ChakraProvider>
 	);
 };

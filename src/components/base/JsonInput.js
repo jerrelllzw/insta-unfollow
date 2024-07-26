@@ -18,13 +18,20 @@ const JsonInput = (props) => {
 			value={files}
 			accept='.json'
 			maxFiles={1}
-			style={{ width: '50vw' }}
+			style={{ width: '20vw' }}
 			label={label}
-			color='#6200EE'
-			background='radial-gradient(circle at 18.7% 37.8%, rgb(250, 250, 250) 0%, rgb(225, 234, 238) 90%)'
+			color='#EEEEEE'
+			background='#393E46'
+			behaviour={'replace'}
 		>
 			{files.map((file) => (
-				<FileMosaic key={file.id} {...file} onDelete={removeFile} />
+				<FileMosaic
+					key={file.id}
+					{...file}
+					onDelete={removeFile}
+					valid={undefined}
+					darkMode={true}
+				/>
 			))}
 		</Dropzone>
 	);

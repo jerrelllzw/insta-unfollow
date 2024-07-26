@@ -1,4 +1,4 @@
-import { INVALID_JSON_FILE_MESSAGE } from '../resources/Constants';
+import { INVALID_JSON_FILE_MESSAGE } from './Constants';
 
 export const readJson = (file) => {
 	return new Promise((resolve, reject) => {

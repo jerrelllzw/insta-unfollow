@@ -1,13 +1,15 @@
 import React from 'react';
 import { Button } from '@chakra-ui/react';
-import { readJson } from '../utils/FileUtils';
+import { readJson } from '../../../common/FileUtils';
 import {
 	FOLLOWERS_FILENAME,
 	FOLLOWINGS_FILENAME,
 	INVALID_FOLLOWERS_FILE_MESSAGE,
 	INVALID_FOLLOWINGS_FILE_MESSAGE,
 	INVALID_JSON_FILE_MESSAGE,
-} from '../resources/Constants';
+	SUCCESS_MESSAGE,
+} from '../../../common/Constants';
+import { useToastUtils } from '../../../common/ToastUtils';
 
 const SubmitButton = (props) => {
 	const {
@@ -18,13 +20,15 @@ const SubmitButton = (props) => {
 		setShowResults,
 	} = props;
 
+	const toast = useToastUtils();
+
 	const validateFiles = () => {
 		if (!followersFile || followersFile.name !== FOLLOWERS_FILENAME) {
-			alert(INVALID_FOLLOWERS_FILE_MESSAGE);
+			toast(INVALID_FOLLOWERS_FILE_MESSAGE, 'error');
 			return false;
 		}
 		if (!followingsFile || followingsFile.name !== FOLLOWINGS_FILENAME) {
-			alert(INVALID_FOLLOWINGS_FILE_MESSAGE);
+			toast(INVALID_FOLLOWINGS_FILE_MESSAGE, 'error');
 			return false;
 		}
 		return true;
@@ -55,14 +59,15 @@ const SubmitButton = (props) => {
 				setHappyResults(mutualFollowing);
 				setSadResults(notFollowingBack);
 				setShowResults(true);
+				toast(SUCCESS_MESSAGE, 'success');
 			} catch (error) {
-				alert(INVALID_JSON_FILE_MESSAGE);
+				toast(INVALID_JSON_FILE_MESSAGE, 'error');
 			}
 		}
 	};
 
 	return (
-		<Button mt={6} colorScheme='green' onClick={handleOnClick}>
+		<Button colorScheme='teal' onClick={handleOnClick}>
 			Get Results
 		</Button>
 	);

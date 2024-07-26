@@ -62,7 +62,7 @@ const SubmitButton = (props) => {
 	};
 
 	return (
-		<Button mt={6} colorScheme='green' onClick={handleOnClick}>
+		<Button colorScheme='teal' onClick={handleOnClick}>
 			Get Results
 		</Button>
 	);

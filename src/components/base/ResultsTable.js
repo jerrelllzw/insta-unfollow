@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, Tbody, Tr, Td, TableContainer, Link } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
-import { INSTAGRAM_LINK } from '../resources/Constants';
+import { INSTAGRAM_LINK } from '../../common/Constants';
 
 const ResultsTable = (props) => {
 	const { results } = props;

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Button } from '@chakra-ui/react';
-import { readJson } from '../utils/FileUtils';
+import { readJson } from '../../common/FileUtils';
 import {
 	FOLLOWERS_FILENAME,
 	FOLLOWINGS_FILENAME,
 	INVALID_FOLLOWERS_FILE_MESSAGE,
 	INVALID_FOLLOWINGS_FILE_MESSAGE,
 	INVALID_JSON_FILE_MESSAGE,
-} from '../resources/Constants';
+} from '../../common/Constants';
 
 const SubmitButton = (props) => {
 	const {

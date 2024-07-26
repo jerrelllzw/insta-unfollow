@@ -22,9 +22,16 @@ const JsonInput = (props) => {
 			label={label}
 			color='#EEEEEE'
 			background='#393E46'
+			behaviour={'replace'}
 		>
 			{files.map((file) => (
-				<FileMosaic key={file.id} {...file} onDelete={removeFile} />
+				<FileMosaic
+					key={file.id}
+					{...file}
+					onDelete={removeFile}
+					valid={undefined}
+					darkMode={true}
+				/>
 			))}
 		</Dropzone>
 	);

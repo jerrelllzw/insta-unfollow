@@ -8,6 +8,7 @@ import {
 	INVALID_FOLLOWINGS_FILE_MESSAGE,
 	INVALID_JSON_FILE_MESSAGE,
 } from '../../../common/Constants';
+import { useToastUtils } from '../../../common/ToastUtils';
 
 const SubmitButton = (props) => {
 	const {
@@ -18,13 +19,15 @@ const SubmitButton = (props) => {
 		setShowResults,
 	} = props;
 
+	const toast = useToastUtils();
+
 	const validateFiles = () => {
 		if (!followersFile || followersFile.name !== FOLLOWERS_FILENAME) {
-			alert(INVALID_FOLLOWERS_FILE_MESSAGE);
+			toast(INVALID_FOLLOWERS_FILE_MESSAGE, 'error');
 			return false;
 		}
 		if (!followingsFile || followingsFile.name !== FOLLOWINGS_FILENAME) {
-			alert(INVALID_FOLLOWINGS_FILE_MESSAGE);
+			toast(INVALID_FOLLOWINGS_FILE_MESSAGE, 'error');
 			return false;
 		}
 		return true;
@@ -56,7 +59,7 @@ const SubmitButton = (props) => {
 				setSadResults(notFollowingBack);
 				setShowResults(true);
 			} catch (error) {
-				alert(INVALID_JSON_FILE_MESSAGE);
+				toast(INVALID_JSON_FILE_MESSAGE, 'error');
 			}
 		}
 	};

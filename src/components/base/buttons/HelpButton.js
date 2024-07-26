@@ -12,12 +12,12 @@ import {
 	useDisclosure,
 } from '@chakra-ui/react';
 
-const Help = () => {
+const HelpButton = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	return (
 		<>
-			<Button onClick={onOpen}>Help</Button>
+			<Button onClick={onOpen}>Need Help?</Button>
 			<Modal onClose={onClose} isOpen={isOpen} isCentered>
 				<ModalOverlay />
 				<ModalContent>
@@ -41,4 +41,4 @@ const Help = () => {
 	);
 };
 
-export default Help;
+export default HelpButton;

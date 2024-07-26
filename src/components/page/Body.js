@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex, Text, Heading } from '@chakra-ui/react';
 import JsonInput from '../base/JsonInput';
-import SubmitButton from '../base/SubmitButton';
-import BackButton from '../base/BackButton';
+import SubmitButton from '../base/buttons/SubmitButton';
+import BackButton from '../base/buttons/BackButton';
 import ResultsTable from '../base/ResultsTable';
 import {
-	FOLLOWERS_FILE_UPLOAD_LABEL,
-	FOLLOWINGS_FILE__UPLOAD_LABEL,
+	FOLLOWERS_FILENAME,
+	FOLLOWINGS_FILENAME,
 } from '../../common/Constants';
+import HelpButton from '../base/buttons/HelpButton';
 
 const Body = () => {
 	const [followersFile, setFollowersFile] = useState([]);
@@ -26,16 +27,17 @@ const Body = () => {
 		>
 			{!showResults && (
 				<>
+					<Heading size='4xl'>Upload Here</Heading>
 					<Flex width={'50vw'} gap={5}>
 						<JsonInput
 							files={followersFile}
 							setFiles={setFollowersFile}
-							label={FOLLOWERS_FILE_UPLOAD_LABEL}
+							label={FOLLOWERS_FILENAME}
 						/>
 						<JsonInput
 							files={followingsFile}
 							setFiles={setFollowingsFile}
-							label={FOLLOWINGS_FILE__UPLOAD_LABEL}
+							label={FOLLOWINGS_FILENAME}
 						/>
 					</Flex>
 					<SubmitButton
@@ -45,6 +47,7 @@ const Body = () => {
 						setSadResults={setSadResults}
 						setShowResults={setShowResults}
 					/>
+					<HelpButton />
 				</>
 			)}
 			{showResults && (

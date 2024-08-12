@@ -8,7 +8,7 @@ const App = () => {
 
 	return (
 		<ChakraProvider>
-			<Flex flexDirection='column' bg='#222831' height='100vh'>
+			<Flex flexDirection='column' bg='#222831' minHeight='100vh'>
 				<Header onOpen={onOpen} />
 				<Body isOpen={isOpen} onClose={onClose} />
 			</Flex>

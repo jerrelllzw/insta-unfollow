@@ -24,10 +24,11 @@ const Body = (props) => {
 			<HelpPopup onClose={onClose} isOpen={isOpen} />
 			<Flex
 				flexDirection='column'
-				justifyContent='center'
 				alignItems='center'
 				height='100%'
 				gap={10}
+				marginTop='auto'
+				marginBottom='auto'
 			>
 				{!showResults && (
 					<>

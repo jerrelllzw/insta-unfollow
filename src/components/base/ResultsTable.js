@@ -20,7 +20,7 @@ const ResultsTable = (props) => {
 			maxHeight='30vh'
 			border='1px solid #EEEEEE'
 			borderRadius='md'
-			width='20vw'
+			minWidth='13em'
 		>
 			<Table variant='simple'>
 				<Thead>

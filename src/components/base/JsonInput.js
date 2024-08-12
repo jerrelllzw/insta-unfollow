@@ -18,7 +18,7 @@ const JsonInput = (props) => {
 			value={files}
 			accept='.json'
 			maxFiles={1}
-			style={{ width: '20vw', minHeight: '225px' }}
+			style={{ width: '13em', minHeight: '225px' }}
 			label={label}
 			color='#EEEEEE'
 			background='#393E46'

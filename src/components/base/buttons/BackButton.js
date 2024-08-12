@@ -16,7 +16,7 @@ const BackButton = (props) => {
 	};
 
 	return (
-		<Button colorScheme='teal' onClick={reset}>
+		<Button colorScheme='teal' onClick={reset} style={{ marginBottom: '1em' }}>
 			Back
 		</Button>
 	);

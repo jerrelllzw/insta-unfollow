@@ -32,7 +32,7 @@ const Body = (props) => {
 				{!showResults && (
 					<>
 						<Heading size='4xl' color='#EEEEEE'>
-							Upload Here
+							Upload Files
 						</Heading>
 						<Flex gap={5} justifyContent='center' alignItems='center'>
 							<JsonInput

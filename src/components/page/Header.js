@@ -6,11 +6,13 @@ const Header = (props) => {
 	const { onOpen } = props;
 
 	return (
-		<Flex alignItems='center' padding='5'>
-			<Heading  color='#EEEEEE' style={{marginRight: 'auto'}}>
-				InstaUnfollow
-			</Heading>
-			<HelpButton onOpen={onOpen} />
+		<Flex alignItems='center' padding='2em'>
+			<Flex style={{ marginRight: 'auto' }}>
+				<Heading color='#c1558b'>Insta</Heading>
+				<Heading color='#8a49a1'>Unfollow</Heading>
+			</Flex>
+
+			<HelpButton onOpen={onOpen}/>
 		</Flex>
 	);
 };

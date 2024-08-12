@@ -24,17 +24,23 @@ const Body = (props) => {
 			<HelpPopup onClose={onClose} isOpen={isOpen} />
 			<Flex
 				flexDirection='column'
-				justifyContent='center'
 				alignItems='center'
 				height='100%'
 				gap={10}
+				marginTop='auto'
+				marginBottom='auto'
 			>
 				{!showResults && (
 					<>
-						<Heading size='4xl' color='#EEEEEE'>
-							Upload Here
+						<Heading size={{ base: '3xl', md: '4xl' }} color='#EEEEEE' >
+							Upload Files
 						</Heading>
-						<Flex gap={5} justifyContent='center' alignItems='center'>
+						<Flex
+							gap={5}
+							justifyContent='center'
+							alignItems='center'
+							flexDirection={{ base: 'column', md: 'row' }}
+						>
 							<JsonInput
 								files={followersFile}
 								setFiles={setFollowersFile}
@@ -57,10 +63,10 @@ const Body = (props) => {
 				)}
 				{showResults && (
 					<>
-						<Heading size='4xl' color='#EEEEEE'>
+						<Heading size={{ base: '3xl', md: '4xl' }} color='#EEEEEE'>
 							Results
 						</Heading>
-						<Flex justifyContent='center' gap={10}>
+						<Flex justifyContent='center' gap={10} flexDirection={{ base: 'column', md: 'row' }}>
 							<Flex flexDirection='column' alignItems='center' gap={5}>
 								<Heading color='#EEEEEE' size='md'>
 									Mutually Following 🙂
